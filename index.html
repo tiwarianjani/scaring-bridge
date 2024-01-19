@@ -568,16 +568,16 @@ top: 40px;right: 63px;">
       //console.log(data_r2);
 
       if (data6 == "" || data5 == "" || data_r4 == "") {
-        alert("Fill empty values");// to show the pop up because it is required
+        swal("Fill empty values");// to show the pop up because it is required
 
         return;
       }
       if (data_c4 == "") {
-        alert("Select some the capacitance");
+        swal("Select some the capacitance");
         return;
       }
       if (data6 <= 0 || data5 <= 0) {
-        alert("Invalid Values");
+        swal("Invalid Values");
 
         return;
       }
@@ -633,7 +633,7 @@ console.log(data_c1);
 
       console.log(val_c, l_min, l_max);
  if (data_c1 ==val_c) {
-        alert("Bridge is Balanced");
+        swal("Bridge is Balanced");
         for (var i = 1; i <= 7; i++) {
           if (i == 2 || i == 4) {
             var data = arr[i - 1];
@@ -673,8 +673,8 @@ console.log(data_c1);
         // error=((val_c-data_c1)/data_c1)*100;
         var audio = new Audio("Timer.mp3");
         audio.play();
-        //alert("Unbalanced Bridge\n"+int(error)+"%");
-        alert("Unbalanced Bridge\n");
+        //swal("Unbalanced Bridge\n"+int(error)+"%");
+        swal("Unbalanced Bridge\n");
         if (val_c < (2 * data_c1) && val_c > (1 / 2) * data_c1)
         audio.volume = 0.1;
       else if (val_c < (5 * data_c1) && val_c > (1 / 5) * data_c1)
@@ -859,7 +859,7 @@ console.log(data_c1);
         //scope: "someScope"
       });
       const Tid = []; const Sid = [];
-      //alert(allConnections.length);
+      //swal(allConnections.length);
       for (var i = 0; i < allConnections.length; i++) {
         var target = allConnections[i].targetId;
         var source = allConnections[i].sourceId;
@@ -889,7 +889,7 @@ console.log(data_c1);
       const set_2 = new Set(arr1);
       console.log(arr_r, arr_c);
       if (Tid.length != 11 || Sid.length != 11 || !setsAreEqual(set_1, set_2) || c_r != 3 || c_v != 1 || c_t != 1 || c_c != 3) {
-        alert("Wrong Connections");
+        swal("Wrong Connections");
       }
       else {
         var amp = {};// this is map to store element connected with this element as source and then destination
@@ -928,9 +928,9 @@ console.log(data_c1);
           console.log(s1, s2, s3, s4);
           console.log(cr(1, amp, s1, arr), fc_r(1, amp, s2, arr), c_c1(0, amp, s3, arr), r_r(0, amp, s4, arr));
           if ((!cr(1, amp, s1, arr)) || (!fc_r(1, amp, s2, arr)) || (!c_c1(0, amp, s3, arr)) || (!r_r(0, amp, s4, arr)))
-            alert('wrong connection');
+            swal('wrong connection');
           else {
-            alert("Right connection...go ahead"); s = amp[arr[6]][0];
+            swal("Right connection...go ahead"); s = amp[arr[6]][0];
             var f = document.getElementById("btn1");
             f.removeAttribute("disabled")
             s = amp[s][0];
@@ -968,9 +968,9 @@ console.log(data_c1);
             console.log(s1, s2, s3, s4);
             console.log(cr(0, amp, s1, arr), fc_r(0, amp, s2, arr), c_c1(1, amp, s3, arr), r_r(1, amp, s4, arr));
             if ((!cr(0, amp, s1, arr)) || (!fc_r(0, amp, s2, arr)) || (!c_c1(1, amp, s3, arr)) || (!r_r(1, amp, s4, arr)))
-              alert(' wrong connection_g');
+              swal(' wrong connection_g');
             else {
-              alert("Right connectoin ....go ahead");
+              swal("Right connectoin ....go ahead");
               var f = document.getElementById("btn1");
               f.removeAttribute("disabled")
               s = amp[arr[6]][0];
@@ -1000,9 +1000,9 @@ console.log(data_c1);
             console.log(s1, s2, s3, s4);
             console.log(cr(1, amp, s1, arr), fc_r(1, amp, s2, arr), c_c1(0, amp, s3, arr), r_r(0, amp, s4, arr));
             if ((!cr(1, amp, s1, arr)) || (!fc_r(1, amp, s2, arr)) || (!c_c1(0, amp, s3, arr)) || (!r_r(0, amp, s4, arr)))
-              alert('Wrong connection');
+              swal('Wrong connection');
             else {
-              alert("Right connection....go ahead");
+              swal("Right connection....go ahead");
               var f = document.getElementById("btn1");
               f.removeAttribute("disabled")
               s = amp[arr[6]][0];
@@ -1022,10 +1022,10 @@ console.log(data_c1);
             }
           }
           else
-            alert("Wrong connection")
+            swal("Wrong connection")
         }
         else {
-          alert('Wrong connection');
+          swal('Wrong connection');
         }
       }
     }
