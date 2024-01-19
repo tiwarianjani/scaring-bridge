@@ -568,16 +568,16 @@ top: 40px;right: 63px;">
       //console.log(data_r2);
 
       if (data6 == "" || data5 == "" || data_r4 == "") {
-        swal("Fill empty values");// to show the pop up because it is required
+        alert("Fill empty values");// to show the pop up because it is required
 
         return;
       }
       if (data_c4 == "") {
-        swal("Select some the capacitance");
+        alert("Select some the capacitance");
         return;
       }
       if (data6 <= 0 || data5 <= 0) {
-        swal("Invalid Values");
+        alert("Invalid Values");
 
         return;
       }
@@ -633,7 +633,7 @@ console.log(data_c1);
 
       console.log(val_c, l_min, l_max);
  if (data_c1 ==val_c) {
-        swal("Bridge is Balanced");
+        alert("Bridge is Balanced");
         for (var i = 1; i <= 7; i++) {
           if (i == 2 || i == 4) {
             var data = arr[i - 1];
@@ -673,8 +673,8 @@ console.log(data_c1);
         // error=((val_c-data_c1)/data_c1)*100;
         var audio = new Audio("Timer.mp3");
         audio.play();
-        //swal("Unbalanced Bridge\n"+int(error)+"%");
-        swal("Unbalanced Bridge\n");
+        //alert("Unbalanced Bridge\n"+int(error)+"%");
+        alert("Unbalanced Bridge\n");
         if (val_c < (2 * data_c1) && val_c > (1 / 2) * data_c1)
         audio.volume = 0.1;
       else if (val_c < (5 * data_c1) && val_c > (1 / 5) * data_c1)
