@@ -303,9 +303,9 @@
                 onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='none'"
                 class="btn btn-danger"><b>Instructions</b></a>
           </div>
-          <div id="digital-m" style="background-color:beige; width: 150px; height: 50px; border: 5px solid black; position:absolute;top:20px ; left:580px ; ">
+<!--           <div id="digital-m" style="background-color:beige; width: 150px; height: 50px; border: 5px solid black; position:absolute;top:20px ; left:580px ; ">
             <b><p id="digi" style="text-align: right; border-radius:5px; margin:5px; font-size:1.5rem; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p></b> 
-          </div>
+          </div> -->
 
         </div>
 
@@ -423,7 +423,10 @@
             <div id="mydiv" style="display:block;border: 2px solid black; padding: 20px;width: 90%;   position: absolute;
 top: 40px;right: 63px;">
               <form action="#" onsubmit="yourJsFunction();return false">
-                <label class="form form-control">Select Resistance R3:<br></label>
+                <span style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
+                <label class="form form-control" style="width:fit-content; ">Select Resistance R3:</label>
+                <b><p id="digi" class="form-control" style="text-align: right;background-color:#C0C0C0; width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p></b> 
+                </span>
                 <select class="form form-control" id="r_3">
 
                   <!-- <option>Select capacitence</option> -->
