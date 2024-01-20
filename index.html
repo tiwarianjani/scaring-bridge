@@ -632,7 +632,7 @@ console.log(data_c1);
 
 
       console.log(val_c, l_min, l_max);
- if (data_c1 ==val_c) {
+ if (data_c1 >=l_min && data_c1<=l_max) {
         swal("Bridge is Balanced");
         for (var i = 1; i <= 7; i++) {
           if (i == 2 || i == 4) {
