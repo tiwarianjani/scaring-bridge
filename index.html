@@ -423,9 +423,11 @@
             <div id="mydiv" style="display:block;border: 2px solid black; padding: 20px;width: 90%;   position: absolute;
 top: 40px;right: 63px;">
               <form action="#" onsubmit="yourJsFunction();return false">
+                <h6>Voltage across detector:</h6>
+                <b><p id="digi" class="form-control" style="text-align: right;background-color:#C0C0C0; width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p></b> 
+                
                 <span style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
                 <label class="form form-control" style="width:fit-content; ">Select Resistance R3:</label>
-                <b><p id="digi" class="form-control" style="text-align: right;background-color:#C0C0C0; width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p></b> 
                 </span>
                 <select class="form form-control" id="r_3">
 
@@ -614,14 +616,26 @@ top: 40px;right: 63px;">
       
       var row = document.createElement("tr");
       var val_c =( data_c2 * data_r4*1000 )/data_r3;
-
-      document.getElementById("digi").innerHTML=((val_c-data_c1)*1000).toFixed(5);
-      //console.log(document.getElementById("digi").innerHTML);
-      data_r1=(data_r3*data_c4/data_c2).toFixed(3);
-      console.log(data_c1,val_c);
       var l_min, l_max;
       l_min = 0.9 * val_c;
       l_max = 1.1 * val_c;
+     var vol=0;
+     if (data_c1 >=l_min && data_c1<=l_max)
+     vol=0;
+    else if(val_c<data_c1)
+    { vol=(5/12)*(data_c1/val_c);
+     vol*=-1;}
+     else
+     {
+      vol=val_c/data_c1;
+      vol=vol*(2.5);
+     }
+     vol=vol.toFixed(3);
+      document.getElementById("digi").innerHTML=`${vol} mv`;
+      //console.log(document.getElementById("digi").innerHTML);
+      data_r1=(data_r3*data_c4/data_c2).toFixed(3);
+      console.log(data_c1,val_c);
+     
 
 console.log(l_min);
 console.log(l_max);
@@ -637,6 +651,7 @@ console.log(data_c1);
       console.log(val_c, l_min, l_max);
  if (data_c1 >=l_min && data_c1<=l_max) {
         swal("Bridge is Balanced");
+        
         for (var i = 1; i <= 7; i++) {
           if (i == 2 || i == 4) {
             var data = arr[i - 1];
