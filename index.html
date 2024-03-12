@@ -421,7 +421,7 @@
                 top: 40px;right: 63px;">
               <form action="#" onsubmit="yourJsFunction();return false">
                 <div style="display:flex;" ><h6>Voltage across detector:</h6>
-                <p id="digi" class="form-control" style="text-align: right;background-color:blue; width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p>
+                <p id="digi" class="form-control" style="text-align: right;background-color:rgb(203, 196, 196); width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:blue;">--.--</p>
               </div>
                 <div style="display:flex; flex-direction:left">
                 <p>R<sub>1</sub>=200 &#8486</p>
@@ -958,6 +958,8 @@ console.log(data_c1);
             v_left = document.querySelector('#' + s + '').getBoundingClientRect().left -p_left;
             $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
               .appendTo("#diagram");
+              $("<div style= 'position: absolute;top:" + (v_top-25 )+ "px ; left:" + (v_left+60) + "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
+
             tag(r_pos, c_pos);
             mydiv.style.display = "block";
             var div1 = document.getElementById("diagram");
@@ -999,7 +1001,8 @@ console.log(data_c1);
               v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left;
               $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
                 .appendTo("#diagram");
-              tag(r_pos, c_pos);
+                $("<div style= 'position: absolute;top:" + (v_top-25 )+ "px ; left:" + (v_left+60 )+ "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
+                tag(r_pos, c_pos);
               mydiv.style.display = "block";
               var div1 = document.getElementById("diagram");
 
@@ -1031,6 +1034,8 @@ console.log(data_c1);
               v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left;
               $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
                 .appendTo("#diagram");
+                $("<div style= 'position: absolute;top:" +( v_top-25 )+ "px ; left:" + (v_left+60) + "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
+
               tag(r_pos, c_pos);
               mydiv.style.display = "block";
               var div1 = document.getElementById("diagram");
@@ -1202,11 +1207,17 @@ if (count == 1) {
  //console.log(r);
       for (var i = 0; i < 3; i++) {
         if (i != 1) {
-          $("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C <sub>"+ (i + 1 + i / 2) + "</sub></b></div>")
+          if(i==0)
+          {$("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + (c[i][1]-20) + "px ;'><b>C<sub>1</sub>(Unknown)</b></div>")
             .appendTo("#diagram");
           $("<div id='r1_tag' style = 'position: absolute;top:" + r[i][0] + "px ; left:" + r[i][1] + "px ;'><b>R<sub>" + (i + 1 + i / 2) + "</sub></b></div>")
             .appendTo("#diagram");
         }
+      else   {$("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C <sub>"+ (i + 1 + i / 2) + "</sub></b></div>")
+      .appendTo("#diagram");
+    $("<div id='r1_tag' style = 'position: absolute;top:" + r[i][0] + "px ; left:" + r[i][1] + "px ;'><b>R<sub>" + (i + 1 + i / 2) + "</sub></b></div>")
+      .appendTo("#diagram");
+  }}
         else {
           $("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C<sub>" + 2 + "</sub></b></div>")
             .appendTo("#diagram");
