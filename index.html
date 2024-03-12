@@ -410,24 +410,27 @@
                 onclick="document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
             </div>
             <div id="fade" class="black_overlay"></div>
-            <div>
-            <h3 style="    position: relative;
-          border: 2px solid black;
-          width: 437px;
-          text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 32px;
-      ">Calculations</h3>
+            <div style="display:flex;flex-direction:column;" >
+             <h3 style="    position: relative;border: 2px solid black;width: 437px;text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 32px;
+                   ">Calculations</h3>
 
 
 
 
-            <div id="mydiv" style="display:block;border: 2px solid black; padding: 20px;width: 90%;   position: absolute;
-top: 40px;right: 63px;">
+            <div id="mydiv" style="display:block;order:1;border: 2px solid black; padding: 20px;width: 90%;   position: absolute;
+                top: 40px;right: 63px;">
               <form action="#" onsubmit="yourJsFunction();return false">
-                <h6>Voltage across detector:</h6>
-                <b><p id="digi" class="form-control" style="text-align: right;background-color:#C0C0C0; width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p></b> 
+                <div style="display:flex;" ><h6>Voltage across detector:</h6>
+                <p id="digi" class="form-control" style="text-align: right;background-color:#C0C0C0; width:fit-content;  border-radius:5px; font-family:'Seven Segment'sans-serif;color:crimson;">--.--</p>
+              </div>
+                <div style="display:flex; flex-direction:left">
+                <p>R<sub>1</sub>=200 &#8486</p>
+                <p>, C<sub>2</sub>=0.001 &#956F</p>
+              </div>
+            
                 
                 <span style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
-                <label class="form form-control" style="width:fit-content; ">Select Resistance R3:</label>
+                <label class="form form-control" style="width:fit-content; ">Select Resistance R<sub>3</sub>:</label>
                 </span>
                 <select class="form form-control" id="r_3">
 
@@ -437,11 +440,11 @@ top: 40px;right: 63px;">
                 </select>
 
                 <br>
-                <label class="form form-control"> Select capacitance C4:<br></label>
+                <label class="form form-control"> Select capacitance C<sub>4</sub>:<br></label>
                 <select class="form form-control" id="c_4">
 
                   <!-- <option>Select capacitence</option> -->
-<!--                   <option class="form form-control" value="0"> 0 &#956F </option> -->
+                  <!-- <option class="form form-control" value="0"> 0 &#956F </option> -->
                   <option class="form form-control" value="0.000000001"> 0.001 &#956F</option>
                   <option class="form form-control" value="0.000000005"> 0.005 &#956F</option>
                   <option class="form form-control" value="0.00000001"> 0.01 &#956F</option>
@@ -454,7 +457,7 @@ top: 40px;right: 63px;">
                 <input class="form form-control" type="number" id="data5"><br>
                 <label class="form form-control">Enter Frequency:</label>
                 <input class="form form-control" type="number" id="data6"><br>
-                <label>Enter R4(in k&#8486):</label>
+                <label>Enter R<sub>4</sub>(in k&#8486):</label>
                 <input class="inputRange form form-control" id="rangeInput" type="range" min="1" max="100"
                   value="1" />
                 <input class="form form-control" class="inputNumber" id="numberInput" type="number" min="1" max="100"
@@ -463,40 +466,38 @@ top: 40px;right: 63px;">
 
               </form>
               
-<!--               
+              <!--               
               <button onClick="window.location.reload();">Reset</button>
               <input type="button" value="Print Report" onClick="window.print()"> -->
             </div>
+            <div style="position:relative;z-index:2;order:2;">
+              <h3 style="  position:relative;  
+            border: 2px solid black;
+            width: 458px;
+            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 40px;        top: 760px;
+        ">Observation Table</h3>
+              <table id="myTable" style="    position: relative;
+                    top: 760px;bottom:auto;
+              border: 2px solid black!important;
+              right: 39px;
+          width: 102%;
+              height: 50px;text-align: center;" class="">
+                <tr>
+                  <th>`R_1` in(&#8486)</th>
+                  <th>`C_1` in(&#956F)</th>
+                  <th>`R_3` in(&#8486)</th>
+                  <th>`C_4` in(&#956F) </th>
+                  <th>`R_4` in(&#8486)</th>
+                  <!-- <th>V<span>&#x2220</span><span>&#629</span></th> -->
+                  <th>`V` in(volt)</th>
+                  <th>`f_r` in(Hz)</th>
+                </tr>
+              </table>
             </div>
-            <br>
-           
-            <h3 style="    position: relative;
-          border: 2px solid black;
-          width: 458px;
-          text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 40px;        top: 668px;
-      ">Observation Table</h3>
-            <table id="myTable" style="    position: relative;
-                  top: 668px;
-            border: 2px solid black!important;
-            right: 39px;
-        width: 102%;
-            height: 50px;text-align: center;" class="">
-              <tr>
-                <th>`R_1` in(&#8486)</th>
-                <th>`C_1` in(&#956F)</th>
-                <th>`R_3` in(&#8486)</th>
-                <th>`C_4` in(&#956F) </th>
-                <th>`R_4` in(&#8486)</th>
-                <!-- <th>V<span>&#x2220</span><span>&#629</span></th> -->
-                <th>`V` in(volt)</th>
-                <th>`f_r` in(Hz)</th>
-              </tr>
-            </table>
-
-
-
+            </div>      
 
           </div>
+       
         </div>
 
 
@@ -872,7 +873,8 @@ console.log(data_c1);
     document.getElementsByTagName("button")[0].onclick = contagem;
 
     function contagem() {
-
+      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+      var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
       var allConnections = instance.getConnections({
         //scope: "someScope"
       });
@@ -952,8 +954,8 @@ console.log(data_c1);
             var f = document.getElementById("btn1");
             f.removeAttribute("disabled")
             s = amp[s][0];
-            v_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 20;
-            v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 230;
+            v_top = document.querySelector('#' + s + '').getBoundingClientRect().top-p_top ;
+            v_left = document.querySelector('#' + s + '').getBoundingClientRect().left -p_left;
             $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
               .appendTo("#diagram");
             tag(r_pos, c_pos);
@@ -993,8 +995,8 @@ console.log(data_c1);
               f.removeAttribute("disabled")
               s = amp[arr[6]][0];
               s = amp[s][0];
-              v_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 20;
-              v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 230;
+              v_top = document.querySelector('#' + s + '').getBoundingClientRect().top -p_top;
+              v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left;
               $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
                 .appendTo("#diagram");
               tag(r_pos, c_pos);
@@ -1025,8 +1027,8 @@ console.log(data_c1);
               f.removeAttribute("disabled")
               s = amp[arr[6]][0];
               s = amp[s][0];
-              v_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 20;
-              v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 230;
+              v_top = document.querySelector('#' + s + '').getBoundingClientRect().top -p_top;
+              v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left;
               $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
                 .appendTo("#diagram");
               tag(r_pos, c_pos);
@@ -1059,8 +1061,10 @@ console.log(data_c1);
 
     function r_r(count, map, so, arr)//r3
     {
-      r_top = document.querySelector('#' + so + '').getBoundingClientRect().top + 20;
-      r_left = document.querySelector('#' + so + '').getBoundingClientRect().left - 230;
+      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+      var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
+      r_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
+      r_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
       r_pos[1] = [r_top, r_left];
       if (map[so].length != (count + 2) || map[so][0] != arr[7])
         return false;
@@ -1068,9 +1072,10 @@ console.log(data_c1);
         return true;
     }
     function c_c1(count, map, so, arr)//c2
-    {
-      c_top = document.querySelector('#' + so + '').getBoundingClientRect().top + 20;
-      c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - 230;
+    {        var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+    var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
+c_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
+      c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
       c_pos[1] = [c_top, c_left];
       if (map[so].length != (count + 3) || map[so][count + 2] != arr[7])
         return false;
@@ -1078,18 +1083,18 @@ console.log(data_c1);
         return true;
     }
     function fc_r(count, map, so, arr)//r1 c1
-    {
-      if (so[0] == 'r') {
-        r_top = document.querySelector('#' + so + '').getBoundingClientRect().top + 20;
-        r_left = document.querySelector(
-          '#' + so + '').getBoundingClientRect().left - 230;
+    {        var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+    var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
+if (so[0] == 'r') {
+        r_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
+        r_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
         r_pos[0] = [r_top, r_left];
         if (map[so].length != (2 + count))//||map[so][1+count][0]!=map[arr[7]][0]
           return false;
         else {
           so = map[so][1 + count];
-          c_top = document.querySelector('#' + so + '').getBoundingClientRect().top + 20;
-          c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - 230;
+          c_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
+          c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
           c_pos[0] = [c_top,                                                                                                                                                  c_left];
           if (map[so].length != 2 || map[so][1] != arr[7])
             return false;
@@ -1098,15 +1103,15 @@ console.log(data_c1);
         }
       }
       else {
-        c_top = document.querySelector('#' + so + '').getBoundingClientRect().top + 20;
-        c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - 230;
+        c_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
+        c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
         c_pos[0] = [c_top, c_left];
         if (map[so].length != (2 + count))//||map[so][1+count]!=map[arr[7]][0]
           return false;
         else {
           so = map[so][1 + count];
-          r_top = document.querySelector('#' + so + '').getBoundingClientRect().top + 20;
-          r_left = document.querySelector('#' + so + '').getBoundingClientRect().left - 230;
+          r_top = document.querySelector('#' + so + '').getBoundingClientRect().top - p_top;
+          r_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
           r_pos[0] = [r_top, r_left];
           if (map[so].length != 2 || map[so][1] != arr[7])
             return false;
@@ -1117,8 +1122,9 @@ console.log(data_c1);
       }
     }
     function cr(count, map, so, arr)//r4 c4  here so is id of c2
-    {
-      if (count == 1) {
+    {       var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+    var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
+if (count == 1) {
         // check for is it connected to c or r
         // then we need to verify accordingly
         var s1, s2;// here s1 for r4 and s2 for c4
@@ -1130,19 +1136,19 @@ console.log(data_c1);
           s2 = map[so][1];
 
         if (s1[0] == 'c') {
-          r_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top + 20;
-          r_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left - 230;
+          r_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top-p_top;
+          r_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left - p_left;
           r_pos[2] = [r_top, r_left];
-          c_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top + 20;
-          c_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left - 230;
+          c_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top -p_top;
+          c_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left - p_left;
           c_pos[2] = [c_top, c_left];
         }
         else {
-          r_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top + 20;
-          r_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left - 230;
+          r_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top - p_top;
+          r_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left - p_left;
           r_pos[2] = [r_top, r_left];
-          c_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top + 20;
-          c_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left - 230;
+          c_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top -p_top;
+          c_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left - p_left;
           c_pos[2] = [c_top, c_left];
         }
         if (map[s1].length != 3 || map[s2].length != 2 || map[s1][0] != arr[7] || map[s2][0] != arr[7])
@@ -1167,19 +1173,19 @@ console.log(data_c1);
           s2 = map[so][1];
         }
         if (s1[0] == 'c') {
-          r_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top + 20;
-          r_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left - 230;
+          r_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top -p_top;
+          r_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left -p_left;
           r_pos[2] = [r_top, r_left];
-          c_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top + 20;
-          c_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left - 230;
+          c_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top -p_top;
+          c_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left -p_left;
           c_pos[2] = [c_top, c_left];
         }
         else {
-          r_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top + 20;
-          r_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left - 230;
+          r_top = document.querySelector('#' + s1 + '').getBoundingClientRect().top -p_top;
+          r_left = document.querySelector('#' + s1 + '').getBoundingClientRect().left -p_left;
           r_pos[2] = [r_top, r_left];
-          c_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top + 20;
-          c_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left - 230;
+          c_top = document.querySelector('#' + s2 + '').getBoundingClientRect().top -p_top;
+          c_left = document.querySelector('#' + s2 + '').getBoundingClientRect().left -p_left;
           c_pos[2] = [c_top, c_left];
         }
         if (map[s1].length != 2 || map[s1][0] != arr[7])
@@ -1191,18 +1197,20 @@ console.log(data_c1);
 
     }
     function tag(r, c) {
-      //console.log(r);
+      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+      var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
+ //console.log(r);
       for (var i = 0; i < 3; i++) {
         if (i != 1) {
-          $("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C" + (i + 1 + i / 2) + "</b></div>")
+          $("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C <sub>"+ (i + 1 + i / 2) + "</sub></b></div>")
             .appendTo("#diagram");
-          $("<div id='r1_tag' style = 'position: absolute;top:" + r[i][0] + "px ; left:" + r[i][1] + "px ;'><b>R" + (i + 1 + i / 2) + "</b></div>")
+          $("<div id='r1_tag' style = 'position: absolute;top:" + r[i][0] + "px ; left:" + r[i][1] + "px ;'><b>R<sub>" + (i + 1 + i / 2) + "</sub></b></div>")
             .appendTo("#diagram");
         }
         else {
-          $("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C" + 2 + "</b></div>")
+          $("<div id='r1_tag' style = 'position: absolute;top:" + c[i][0] + "px ; left:" + c[i][1] + "px ;'><b>C<sub>" + 2 + "</sub></b></div>")
             .appendTo("#diagram");
-          $("<div id='r1_tag' style = 'position: absolute;top:" + r[i][0] + "px ; left:" + r[i][1] + "px ;'><b>R" + 3 + "</b></div>")
+          $("<div id='r1_tag' style = 'position: absolute;top:" + r[i][0] + "px ; left:" + r[i][1] + "px ;'><b>R<sub>" + 3 + "</sub></b></div>")
             .appendTo("#diagram");
         }
       }
