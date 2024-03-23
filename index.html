@@ -230,10 +230,10 @@
           width: 323px;
           height: 204px;
       ">
-            <div class="control r"><img src="resistor.png" width="85px" height="40px"></div>
-            <div class="control v"><img src="voltage.png" width="85px" height="40px"></div>
-            <div class="control t"><img src="galv.png" width="85px" height="40px"></div>
-            <div class="control c"><img src="cap.png" width="85px" height="40px"></div>
+            <div class="control r"><img src="resistor.png" width="85px" height="60px"></div>
+            <div class="control v"><img src="voltage.png" width="85px" height="60px"></div>
+            <div class="control t"><img src="galv.png" width="85px" height="60px"></div>
+            <div class="control c"><img src="cap.png" width="85px" height="60px"></div>
             <h3 style="    position: absolute;
             border: 2px solid black;
             width: 323px;
@@ -430,17 +430,18 @@
             
                 
                 <span style="display: flex; flex-direction:row; justify-content:space-between; align-items: center;">
-                <label class="form form-control" style="width:fit-content; ">Select Resistance R<sub>3</sub>:</label>
                 </span>
-                <select class="form form-control" id="r_3">
+                  <label  >Select R<sub>3</sub>:</label>
+              
+                <select class="form form-control"id="r_3">
 
                   <!-- <option>Select capacitence</option> -->
-                  <option value="100" class="form form-control"> 100&#8486 </option>
-                  <option value="200" class="form form-control"> 200&#8486 </option>
+                  <option value="100" > 100&#8486 </option>
+                  <option value="200" > 200&#8486 </option>
                 </select>
 
                 <br>
-                <label class="form form-control"> Select capacitance C<sub>4</sub>:<br></label>
+                <label> Select C<sub>4</sub>:<br></label>
                 <select class="form form-control" id="c_4">
 
                   <!-- <option>Select capacitence</option> -->
@@ -453,15 +454,23 @@
                 </select>
 
                 <br>
-                <label class="form form-control">Enter Voltage:</label>
-                <input class="form form-control" type="number" id="data5"><br>
-                <label class="form form-control">Enter Frequency:</label>
-                <input class="form form-control" type="number" id="data6"><br>
+                <label >Select Voltage:</label>
+                <select class="form form-control" id="data5">
+                  <option value="10">10 V</option>
+                  <option value="15">15 V</option>
+                </select>
+                <!-- <input class="form form-control" type="number" id="data5"><br> -->
+                <label >Frequency:</label>
+                <select class="form form-control" id="data6">
+                  <option value="50">50Hz</option>
+               
+                </select>
+                <!-- <input class="form form-control" type="number" id="data6"><br> -->
                 <label>Enter R<sub>4</sub>(in k&#8486):</label>
-                <input class="inputRange form form-control" id="rangeInput" type="range" min="1" max="100"
-                  value="1" />
-                <input class="form form-control" class="inputNumber" id="numberInput" type="number" min="1" max="100"
-                  value="1" /><br>
+                <input class="inputRange form form-control" id="rangeInput" type="range" min="1" max="100" step="0.001"
+                  val="1" />
+                <input class="form form-control" class="inputNumber" id="numberInput" type="number" min="1" max="100" placeholder="Enter batween 1 and 100k&#8486"
+                   val="1" step="0.001" /><br>
                 <input class="btn btn-success" id="btn1" style="width: 100%;" type="submit" disabled />
 
               </form>
@@ -474,10 +483,10 @@
               <h3 style="  position:relative;  
             border: 2px solid black;
             width: 458px;
-            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 40px;        top: 760px;
+            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 40px; top: 640px;
         ">Observation Table</h3>
               <table id="myTable" style="    position: relative;
-                    top: 760px;bottom:auto;
+                    top: 635px;bottom:auto;
               border: 2px solid black!important;
               right: 39px;
           width: 102%;
@@ -548,7 +557,89 @@
     });
     console.log(range.value);
     console.log(field.value);
-    //data_r2 = output.innerHTML;
+    var div1 = document.getElementById("diagram");
+    // for r4
+    range.addEventListener('input',function(e){
+      data_r3=document.getElementById("r_3").value;
+     //console.log(data5," ",data6);
+     data5=document.getElementById('data5').value;
+     
+     if(data5!=""&&data_r4!=""&& div1.classList.contains('no-pointer-events'))
+     {  data_r4=range.value;
+       data_c2 = parseFloat(data_c2);// used for converting int to flaot
+      data_r3 = parseFloat(data_r3);
+      
+      var val_c =( data_c2 * data_r4*1000 )/data_r3;
+      var mx=Math.max(val_c,data_c1);
+         var mn=Math.min(val_c,data_c1);
+       var  i=(mx-mn)/mx;
+
+         i=i*data5*5.0;
+          i/=15;
+          
+      var l_min, l_max;
+      l_min = 0.97 * data_c1;
+      l_max = 1.03 * data_c1;
+    i=i.toFixed(3);
+      document.getElementById("digi").innerHTML=`${i} mv`;}
+     
+    });
+
+    // for r3
+    document.getElementById('r_3').addEventListener('input',function(e){
+      data_r3=document.getElementById("r_3").value;
+     //console.log(data5," ",data6);
+     data5=document.getElementById('data5').value;
+     
+     if(data5!=""&&data_r4!=""&& div1.classList.contains('no-pointer-events'))
+     {  data_r4=range.value;
+       data_c2 = parseFloat(data_c2);// used for converting int to flaot
+       data_r3 = parseFloat(data_r3);
+      
+      var val_c =( data_c2 * data_r4*1000 )/data_r3;
+      var mx=Math.max(val_c,data_c1);
+      var mn=Math.min(val_c,data_c1);
+    var  i=(mx-mn)/mx;
+
+      i=i*data5*5.0;
+       i/=15;
+       
+   var l_min, l_max;
+   l_min = 0.97 * data_c1;
+   l_max = 1.03 * data_c1;
+ i=i.toFixed(3);
+      document.getElementById("digi").innerHTML=`${i} mv`;}
+     
+    });
+    // for v
+    document.getElementById('data5').addEventListener('input',function(e){
+      data_r3=document.getElementById("r_3").value;
+     //console.log(data5," ",data6);
+     data5=document.getElementById('data5').value;
+     
+     if(data5!=""&&data_r4!=""&& div1.classList.contains('no-pointer-events'))
+     {  data_r4=range.value;
+       data_c2 = parseFloat(data_c2);// used for converting int to flaot
+       data_r3 = parseFloat(data_r3);
+      
+      var val_c =( data_c2 * data_r4*1000 )/data_r3;
+      var mx=Math.max(val_c,data_c1);
+         var mn=Math.min(val_c,data_c1);
+       var  i=(mx-mn)/mx;
+
+         i=i*data5*5.0;
+          i/=15;
+          
+      var l_min, l_max;
+      l_min = 0.97 * data_c1;
+      l_max = 1.03 * data_c1;
+    i=i.toFixed(3);
+      document.getElementById("digi").innerHTML=`${i} mv`;}
+     
+    });
+
+
+
 
     function yourJsFunction() {
       //mydiv.style.display="none";
@@ -618,21 +709,8 @@
       var row = document.createElement("tr");
       var val_c =( data_c2 * data_r4*1000 )/data_r3;
       var l_min, l_max;
-      l_min = 0.9 * val_c;
-      l_max = 1.1 * val_c;
-     var vol=0;
-     if (data_c1 >=l_min && data_c1<=l_max)
-     vol=0;
-    else if(val_c<data_c1)
-    { vol=(5/12)*(data_c1/val_c);
-     vol*=-1;}
-     else
-     {
-      vol=val_c/data_c1;
-      vol=vol*(2.5);
-     }
-     vol=vol.toFixed(3);
-      document.getElementById("digi").innerHTML=`${vol} mv`;
+      l_min = 0.97 * val_c;
+      l_max = 1.03 * val_c;
       //console.log(document.getElementById("digi").innerHTML);
       data_r1=(data_r3*data_c4/data_c2).toFixed(3);
       console.log(data_c1,val_c);
@@ -788,7 +866,7 @@ console.log(data_c1);
           if (id[0] == 'v') {
 
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }], maxConnections: 2,
+              endpoint: ["Dot", { radius: 10 }], maxConnections: 2,
               anchor: ["Left"],
               isSource: true, paintStyle: { fill: "red" }, options: {
                 curviness: 50
@@ -797,7 +875,7 @@ console.log(data_c1);
             });
 
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }], maxConnections: 3,
+              endpoint: ["Dot", { radius: 10 }], maxConnections: 3,
               anchor: ["Right"],
               isTarget: true, options: {
                 curviness: 50
@@ -809,7 +887,7 @@ console.log(data_c1);
           else if (id[0] == 'r') {
 
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }], maxConnections: 2,
+              endpoint: ["Dot", { radius: 10 }], maxConnections: 2,
               anchor: ["Left"],
               isTarget: true, options: {
                 curviness: 50
@@ -818,7 +896,7 @@ console.log(data_c1);
             });
 
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }], maxConnections: 2,
+              endpoint: ["Dot", { radius: 10 }], maxConnections: 2,
               anchor: ["Right"],
               isSource: true, paintStyle: { fill: "red" }, options: {
                 curviness: 50
@@ -829,7 +907,7 @@ console.log(data_c1);
           }
           else if (id[0] == 't') {
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }],
+              endpoint: ["Dot", { radius: 10 }],
               anchor: ["Left"],
               isTarget: true, options: {
                 curviness: 50
@@ -838,7 +916,7 @@ console.log(data_c1);
             });
 
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }],
+              endpoint: ["Dot", { radius: 10 }],
               anchor: ["Right"], paintStyle: { fill: "red" },
               isSource: true, options: {
                 curviness: 50
@@ -849,7 +927,7 @@ console.log(data_c1);
           }
           else {
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }], maxConnections: 3,
+              endpoint: ["Dot", { radius: 10 }], maxConnections: 3,
               anchor: ["Right"], paintStyle: { fill: "red" },
               isSource: true, options: {
                 curviness: 50
@@ -858,7 +936,7 @@ console.log(data_c1);
             });
 
             instance.addEndpoint(id, {
-              endpoint: ["Dot", { radius: 5 }], maxConnections: 2,
+              endpoint: ["Dot", { radius: 10 }], maxConnections: 2,
               anchor: ["Left"],
               isTarget: true, options: {
                 curviness: 50
@@ -873,7 +951,7 @@ console.log(data_c1);
     document.getElementsByTagName("button")[0].onclick = contagem;
 
     function contagem() {
-      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-65;
       var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
       var allConnections = instance.getConnections({
         //scope: "someScope"
@@ -958,7 +1036,7 @@ console.log(data_c1);
             v_left = document.querySelector('#' + s + '').getBoundingClientRect().left -p_left;
             $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
               .appendTo("#diagram");
-              $("<div style= 'position: absolute;top:" + (v_top-25 )+ "px ; left:" + (v_left+60) + "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
+              $("<div style= 'position: absolute;top:" + (v_top-40 )+ "px ; left:" + (v_left+60) + "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
 
             tag(r_pos, c_pos);
             mydiv.style.display = "block";
@@ -1001,7 +1079,7 @@ console.log(data_c1);
               v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left;
               $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
                 .appendTo("#diagram");
-                $("<div style= 'position: absolute;top:" + (v_top-25 )+ "px ; left:" + (v_left+60 )+ "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
+                $("<div style= 'position: absolute;top:" + (v_top-40 )+ "px ; left:" + (v_left+60 )+ "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
                 tag(r_pos, c_pos);
               mydiv.style.display = "block";
               var div1 = document.getElementById("diagram");
@@ -1034,7 +1112,7 @@ console.log(data_c1);
               v_left = document.querySelector('#' + s + '').getBoundingClientRect().left - p_left;
               $("<div id='v_tag' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>V,f</b></div>")
                 .appendTo("#diagram");
-                $("<div style= 'position: absolute;top:" +( v_top-25 )+ "px ; left:" + (v_left+60) + "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
+                $("<div style= 'position: absolute;top:" +( v_top-40 )+ "px ; left:" + (v_left+60) + "px ;'><img  src='gnd.png'></div>").appendTo('#diagram');
 
               tag(r_pos, c_pos);
               mydiv.style.display = "block";
@@ -1066,7 +1144,7 @@ console.log(data_c1);
 
     function r_r(count, map, so, arr)//r3
     {
-      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-65;
       var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
       r_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
       r_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
@@ -1077,7 +1155,7 @@ console.log(data_c1);
         return true;
     }
     function c_c1(count, map, so, arr)//c2
-    {        var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+    {        var p_top=document.querySelector('#diagram').getBoundingClientRect().top-65;
     var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
 c_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
       c_left = document.querySelector('#' + so + '').getBoundingClientRect().left - p_left;
@@ -1088,7 +1166,7 @@ c_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top
         return true;
     }
     function fc_r(count, map, so, arr)//r1 c1
-    {        var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+    {        var p_top=document.querySelector('#diagram').getBoundingClientRect().top-65;
     var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
 if (so[0] == 'r') {
         r_top = document.querySelector('#' + so + '').getBoundingClientRect().top -p_top;
@@ -1127,7 +1205,7 @@ if (so[0] == 'r') {
       }
     }
     function cr(count, map, so, arr)//r4 c4  here so is id of c2
-    {       var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+    {       var p_top=document.querySelector('#diagram').getBoundingClientRect().top-65;
     var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
 if (count == 1) {
         // check for is it connected to c or r
@@ -1202,7 +1280,7 @@ if (count == 1) {
 
     }
     function tag(r, c) {
-      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-40;
+      var p_top=document.querySelector('#diagram').getBoundingClientRect().top-65;
       var p_left=document.querySelector('#diagram').getBoundingClientRect().left-40;
  //console.log(r);
       for (var i = 0; i < 3; i++) {
