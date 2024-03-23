@@ -454,11 +454,21 @@
                 </select>
 
                 <br>
-                <label class="form form-control">Enter Voltage:</label>
-                <input class="form form-control" type="number" id="data5"><br>
-                <label class="form form-control">Enter Frequency:</label>
-                <input class="form form-control" type="number" id="data6"><br>
-                <label>Enter R<sub>4</sub>(in k&#8486):</label>
+                <label >Select Voltage:</label>
+                <select class="form form-control"id="data5">
+
+                  <!-- <option>Select capacitence</option> -->
+                  <option value="10" > 10V </option>
+                  <option value="15" > 15V </option>
+                </select>
+                <label > Frequency:</label>
+                <select class="form form-control"id="data6">
+
+                  <!-- <option>Select capacitence</option> -->
+                  <option value="50" > 50Hz </option>
+                  
+                </select>            
+                    <label>Enter R<sub>4</sub>(in k&#8486):</label>
                 <input class="inputRange form form-control" id="rangeInput" type="range" min="1" max="100" step="0.001"
                   val="1" />
                 <input class="form form-control" class="inputNumber" id="numberInput" type="number" min="1" max="100" placeholder="Enter batween 1 and 100k&#8486"
@@ -475,10 +485,11 @@
               <h3 style="  position:relative;  
             border: 2px solid black;
             width: 458px;
-            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 40px; top: 640px;
+            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 40px;
+             top: 650px;
         ">Observation Table</h3>
               <table id="myTable" style="    position: relative;
-                    top: 635px;bottom:auto;
+                    top: 645px;bottom:auto;
               border: 2px solid black!important;
               right: 39px;
           width: 102%;
